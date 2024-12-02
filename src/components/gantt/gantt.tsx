@@ -24,7 +24,7 @@ import { HorizontalScroll } from "../other/horizontal-scroll";
 import { removeHiddenTasks, sortTasks } from "../../helpers/other-helper";
 import styles from "./gantt.module.css";
 
-export const Gantt: React.FunctionComponent<GanttProps> = ({
+export const Gantt: React.FC<GanttProps > = ({
   tasks,
   headerHeight = 50,
   columnWidth = 60,
@@ -113,6 +113,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       preStepsCount
     );
     let newDates = seedDates(startDate, endDate, viewMode);
+   // console.log("newDates:", newDates)
+
     if (rtl) {
       newDates = newDates.reverse();
       if (scrollX === -1) {

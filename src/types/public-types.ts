@@ -1,3 +1,5 @@
+import React from "react";
+
 export enum ViewMode {
   Hour = "Hour",
   QuarterDay = "Quarter Day",

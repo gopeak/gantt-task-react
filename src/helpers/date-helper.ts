@@ -12,6 +12,30 @@ type DateHelperScales =
   | "millisecond";
 
 const intlDTCache = {};
+
+
+function customDateTimeFormat(locale:string | string[], opts:any) {
+  const shortWeekdays = ["S", "M", "T", "W", "T", "F", "S"];
+  const cnShortWeekdays = ["一", "二", "三", "四", "五", "六", "日"];
+
+  // 如果请求的配置是星期，则替换为短格式
+  if (opts && opts.weekday === "short" && (locale=="en" || locale=="en-GB" || locale=="zh")) {
+    return {
+      format: (date: Date) => {
+        const dayOfWeekIndex = date.getDay();
+        if (locale=="zh") {
+          return cnShortWeekdays[dayOfWeekIndex];
+        }
+        return shortWeekdays[dayOfWeekIndex];
+      },
+    };
+  }
+
+  // 对于其他配置，返回默认 Intl 行为
+  return new Intl.DateTimeFormat(locale, opts);
+}
+
+
 export const getCachedDateTimeFormat = (
   locString: string | string[],
   opts: DateTimeFormatOptions = {}
@@ -19,7 +43,8 @@ export const getCachedDateTimeFormat = (
   const key = JSON.stringify([locString, opts]);
   let dtf = intlDTCache[key];
   if (!dtf) {
-    dtf = new Intl.DateTimeFormat(locString, opts);
+    console.log("Intl.DateTimeFormat: " + locString, opts)
+    dtf = customDateTimeFormat(locString, opts);
     intlDTCache[key] = dtf;
   }
   return dtf;
