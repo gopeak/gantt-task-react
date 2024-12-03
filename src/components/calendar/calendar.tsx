@@ -221,9 +221,8 @@ export const Calendar: React.FC<CalendarProps> = ({
     const dates = dateSetup.dates;
     for (let i = 0; i < dates.length; i++) {
       const date = dates[i];
-      const bottomValue = `${getLocalDayOfWeek(date, locale, "short")}, ${date
-        .getDate()
-        .toString()}`;
+      //const bottomValue = `${getLocalDayOfWeek(date, locale, "short")}, ${date.getDate().toString()}`;
+      const bottomValue = `${getLocalDayOfWeek(date, locale, "short")}`;
 
       bottomValues.push(
         <text

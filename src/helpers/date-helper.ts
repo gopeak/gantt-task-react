@@ -224,6 +224,7 @@ export const getLocalDayOfWeek = (
   let bottomValue = getCachedDateTimeFormat(locale, {
     weekday: format,
   }).format(date);
+  //console.log('getLocalDayOfWeek:',bottomValue);
   bottomValue = bottomValue.replace(
     bottomValue[0],
     bottomValue[0].toLocaleUpperCase()
