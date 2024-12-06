@@ -11,7 +11,7 @@ export enum ViewMode {
   QuarterYear = "QuarterYear",
   Year = "Year",
 }
-export type TaskType = "task" | "milestone" | "project";
+export type TaskType = 'task' | 'milestone' | 'project' | 'sprint' | 'module' |  'priority';
 export interface Task {
   id: string;
   type: TaskType;
